@@ -6,9 +6,11 @@ const Buscador = ()=>{
     return(
         <section className='wrapper-buscador'>
             <form className='buscador'>
-            <img src={logo}/>
-            <input className='buscador--input' placeholder='Ingresa tu busqueda'/>
-            <img src={lupa} className='lupa'/>
+            <img src={logo} alt='logoMercadoLibre'/>
+            <section className='wrapper--input--buscador'>
+                <input type='text' className='buscador--input' placeholder='Ingresa tu busqueda'/>
+                <img src={lupa} className='lupa' alt='lupa'/>
+            </section>
             </form>
         </section>
     )

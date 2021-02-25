@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   text-decoration: none;
   list-style: none;
+  font-family: Lato;
+  
 }
 
+
+
 .App{
-  background-color: rgb(184, 184, 184);
+  background: rgba(0,0,0,.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,6 +27,7 @@
   width: 100%;
   justify-content: center;
   padding: 1vh;
+
 }
 
 .buscador{
@@ -35,23 +42,22 @@
 .buscador--input{
   background-color: white;
   border-radius: 4px 0px 0px 4px;
-  margin-left: 1vh;
+  margin-left: 20px;
+  padding-left: 20px;
   border-style: none  ;
-  height: 100%;
   width: 100%;  
 }
 
 .lupa{
   background-color: rgb(221, 221, 221);
   height: 100%;
-  padding: 2.2vh;
+  padding: 14px;
   border-radius:0 5px 5px 0;
 }
 
 .wrapper--titulo--producto--imagen{
   display: flex;
   flex-direction: row;
-  width: 90%;
 }
 
 .wrapper--img{
@@ -65,11 +71,95 @@
 
 .wrapper--main{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background-color: white;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 .categoria--producto{
   margin-bottom: 16px;
   margin-top: 16px;
+  color: #999999;
+}
+
+.info--producto{
+  width: 291px;
+  height: 291px;
+  margin-left: 16px;
+}
+
+.precio{
+  font-size: 46px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.categoria--nuevo--usado{
+  margin-top: 16px;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.nombre--producto{
+  font-size: 24px;
+  color: #333333;
+  margin-top: 9px;
+}
+
+.boton--comprar{
+  width: 90%;
+  border-color: transparent;
+  background-color: #3483fa;
+  color: #fff;
+  font-size: 16px;
+  line-height: 48px;
+  padding: 0 24px;
+  height: 48px;
+  text-align: center;
+
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.titulo--descripcion{
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.descripcion--producto{
+  font-size: 16px;
+  color: #666666;
+  width: 58%;
+  margin-top: 20px;
+}
+
+.Content{
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper--input--buscador{
+  display: flex;
+  width: 90%;
+  height: 46px;
+}
+
+.wrapper--categoria--main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+}
+
+.wrapper--descripcion{
+  margin-top: 20px;
 }

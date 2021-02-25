@@ -1,11 +1,13 @@
 import Buscador from './Buscador'
-import Resultado from './Resultado'
+import Detalle from './Detalle';
 
 function App() {
   return (
     <div className="App">
-     <Buscador/>
-     <Resultado/>
+      <Buscador/>
+      <div className='Content'>
+          <Detalle/>
+      </div>
     </div>
   );
 }
