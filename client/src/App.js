@@ -1,12 +1,14 @@
 import Buscador from './Buscador'
 import Detalle from './Detalle';
+import Resultado from './Resultado';
 
 function App() {
   return (
     <div className="App">
       <Buscador/>
       <div className='Content'>
-          <Detalle/>
+        <Resultado/>
+          {/* <Detalle/> */}
       </div>
     </div>
   );
