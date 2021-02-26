@@ -7,14 +7,15 @@ module.exports ={
 
     findAll: async (req,res)=>{
 
-        
+        const responseAll = await fetch(`${baseurl}/sites/MLA/search?q=${req.params.query}`)
 
-        res.send('hola')
+        const resjsonAll = await responseAll.json()
+
+        res.send(resjsonAll)
     },
     findById: async (req,res)=>{
 
         const response = await fetch(`${baseurl}/items/${req.params.id}`)
-
 
         const resjson = await response.json()
 
@@ -22,10 +23,15 @@ module.exports ={
 
         const resjsonD = await descripcion__response.json()
 
+        const seller = await fetch(`${baseurl}/users/${resjson.seller_id}`)
+
+        const sellerjson = await seller.json()
+
+
         const elFormato = {
             author: {
-                name: String,
-                lastname: String
+                name: sellerjson.nickname,
+                lastname: ''
             },
             item: {
                 id: resjson.id,
@@ -42,7 +48,7 @@ module.exports ={
                 description: resjsonD.plain_text
             
         }}
-           
-        res.send(elFormato)
+   
+        res.json(elFormato)
     }
 }
