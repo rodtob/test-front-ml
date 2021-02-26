@@ -4,14 +4,40 @@ const fetch = require("node-fetch");
 const baseurl = 'https://api.mercadolibre.com'
 
 module.exports ={
-
+    
     findAll: async (req,res)=>{
-
+        
         const responseAll = await fetch(`${baseurl}/sites/MLA/search?q=${req.params.query}`)
-
         const resjsonAll = await responseAll.json()
 
-        res.send(resjsonAll)
+            let categorias = resjsonAll.available_filters[0].values.map(element => {             
+              return element.name
+            });
+
+            let items = resjsonAll.results.map(element => {
+                return { id: element.id,
+                title: element.title,
+                price:{currency: element.currency_id,
+                    amount: element.price,
+                    decimals: parseFloat((element.prices.prices[0].amount - Math.floor(element.prices.prices[0].amount)).toFixed(2)),
+                },
+                picture: element.thumbnail,
+                condition: element.condition,
+                free_shipping: element.shipping.free_shipping}
+            });
+
+        const elFormatoAll = {
+            
+            author: {
+            name: String,
+            lastname: String,
+            },
+            categories: [ categorias],
+            items: [items]
+           }
+
+           console.log(elFormatoAll)
+        res.send(elFormatoAll)
     },
     findById: async (req,res)=>{
 
