@@ -14,12 +14,13 @@ module.exports ={
               return element.name
             });
 
+
             let items = resjsonAll.results.map(element => {
                 return { id: element.id,
                 title: element.title,
                 price:{currency: element.currency_id,
                     amount: element.price,
-                    decimals: parseFloat((element.prices.prices[0].amount - Math.floor(element.prices.prices[0].amount)).toFixed(2)),
+                    decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
                 },
                 picture: element.thumbnail,
                 condition: element.condition,
@@ -29,15 +30,15 @@ module.exports ={
         const elFormatoAll = {
             
             author: {
-            name: String,
-            lastname: String,
+            name: '',
+            lastname: '',
             },
             categories: [ categorias],
             items: [items]
            }
 
-           console.log(elFormatoAll)
-        res.send(elFormatoAll)
+            console.log(elFormatoAll)
+            res.send(resjsonAll)
     },
     findById: async (req,res)=>{
 
