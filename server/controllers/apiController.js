@@ -16,16 +16,17 @@ module.exports ={
 
 
             let items = resjsonAll.results.map(element => {
-                return { id: element.id,
-                title: element.title,
-                price:{currency: element.currency_id,
-                    amount: element.price,
-                    decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
+                return {
+                        id: element.id,
+                        title: element.title,
+                        price:{currency: element.currency_id,
+                        amount: element.price,
+                        decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
                 },
-                picture: element.thumbnail,
-                condition: element.condition,
-                free_shipping: element.shipping.free_shipping}
-            });
+                        picture: element.thumbnail,
+                        condition: element.condition,
+                        free_shipping: element.shipping.free_shipping}
+              });
 
         const elFormatoAll = {
             
@@ -37,8 +38,7 @@ module.exports ={
             items: [items]
            }
 
-            console.log(elFormatoAll)
-            res.send(resjsonAll)
+            res.send(elFormatoAll)
     },
     findById: async (req,res)=>{
 
