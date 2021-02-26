@@ -24,29 +24,27 @@ const App = ()=> {
 
   }, [id]);
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    async function apiCall() {
-      let response = await fetch(`/api/itemsq=${query}`)
-      response = await response.json()
-      setData(response)
-      console.log(response)
-    }
+//     async function apiCall() {
+//       let response = await fetch(`/api/itemsq=${query}`)
+//       response = await response.json()
+//       setData(response)
+//       console.log(response)
+//     }
 
-   apiCall()    
+//    apiCall()    
 
-}, [query]);
-
-
-
-
+// }, [query]);
 
   return (
+
     <div className="App">
       <Buscador/>
       <div className='Content'>
-        <Resultado/>
-          {/* <Detalle/> */}
+      {data !=null ? <Detalle data={data} /> : 
+      <p>cargando...</p>}
+
       </div>
     </div>
   );

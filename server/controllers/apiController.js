@@ -54,6 +54,10 @@ module.exports ={
 
         const sellerjson = await seller.json()
 
+        const categoria = await fetch(`${baseurl}/categories/${resjson.category_id}`)
+
+        const catergoriajson = await categoria.json()
+
 
         const elFormato = {
             author: {
@@ -72,7 +76,8 @@ module.exports ={
                 condition: resjson.condition,
                 free_shipping: resjson.shipping.free_shipping,
                 sold_quantity: resjson.sold_quantity,
-                description: resjsonD.plain_text
+                description: resjsonD.plain_text,
+                category: catergoriajson.name 
             
         }}
    

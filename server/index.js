@@ -1,11 +1,14 @@
 const express = require("express");
 
-const PORT = process.env.PORT || 5000;
+var cors = require('cors')
 
 const app = express();
 
+const PORT = process.env.PORT || 5000;
 
 let apiRouter = require('./routes/items')
+
+app.use(cors())
 
 app.use('/api', apiRouter);
 
