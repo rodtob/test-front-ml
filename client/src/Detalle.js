@@ -7,17 +7,15 @@ import {useParams} from 'react-router-dom'
 const Detalle = ()=>{
 
   const {id} = useParams()
- 
-  console.log('el id es  '+id) 
 
   const [data, setData] = useState(null);
 
-  const [elid, setId] = useState(id)
+  const [idApi, setId] = useState(id)
   
   useEffect(() => {
   
       async function apiCall() {
-        let response = await fetch(`/api/items/${elid}`)
+        let response = await fetch(`/api/items/${idApi}`)
         response = await response.json()
         setData(response)
         console.log(response)

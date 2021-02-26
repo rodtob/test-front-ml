@@ -1,7 +1,52 @@
 
 import envio from './Assets/ic_shipping.png'
+import React,{useState, useEffect} from 'react'
+import {useLocation, useParams} from 'react-router-dom'
+import queryString from 'querystring'
+
+
 
 const Resultado = ()=>{
+
+
+    const { search } = useLocation();
+
+    console.log(search)
+
+    const aquery = new URLSearchParams(search);
+  
+    let elsearch = aquery.get('search')
+
+    console.log(elsearch)
+    
+  
+    const [query, setQuery] = useState(elsearch)
+
+    const [products, setProducts] = useState(null);
+    
+
+
+    // let location = useLocation();
+    // let queryBar = location.search
+    // const value=queryString.parse(queryBar);
+    // const token=value['?search'];
+    // console.log('token',token)//123
+    // setQuery(elsearch)
+    
+    async function apiCall() {
+        let response = await fetch(`/api/itemsq=${query}`)
+        let responseJson = await response.json()
+        setProducts(responseJson)
+        console.log(responseJson)
+    }
+    
+    useEffect( () => {
+        
+        apiCall()
+    
+    },[]);
+
+if(products){
     return(
         <div className='wrapper--categoria--main'>
             <p className='categoria--producto'>Electrónica audio video</p>
@@ -49,6 +94,14 @@ const Resultado = ()=>{
             </article>
         </div>
     )
+} else{
+    return(
+        <p>cargando...</p>
+    )
+
+}
+
+
 }
 
 export default Resultado

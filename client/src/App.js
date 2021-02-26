@@ -3,36 +3,47 @@ import Buscador from './Buscador'
 import Detalle from './Detalle';
 import Resultado from './Resultado';
 import {Switch, Route} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import queryString from 'querystring'
 
+
 const App = ()=> {
+  
+  const [input, setInput] = useState('');
 
+  const updateInput = async (input) => {
+    setInput(input);
 
-  // const [query, setQuery] = useState('pikachu')
+}
+    
+    // let location = useLocation();
+    // let queryBar = location.search
+    // const value=queryString.parse(queryBar);
+    // const token=value['?search'];
 
+//     useEffect(()=>{
+      
+//       // setQuery(token)
+    
+//       // console.log('token',token)//123
+  
 
-//   useEffect(() => {
+//  },[input])
 
-//     async function apiCall() {
-//       let response = await fetch(`/api/itemsq=${query}`)
-//       response = await response.json()
-//       setData(response)
-//       console.log(response)
-//     }
-
-//    apiCall()    
-
-// }, [query]);
-
+ 
+  
   return (
   <React.Fragment>
     <div className="App">
-      <Buscador/>
+      <Buscador input={input} 
+       onChange={updateInput}/>
+
       <div className='Content'>
    
+         <Resultado/>
         <Switch>
-          <Route exact path='/items/:id' component={Detalle}/>
           <Route exact path='/items?search=' component={Resultado}/>
+          <Route exact path='/items/:id' component={Detalle}/>
         </Switch>
 
       </div>

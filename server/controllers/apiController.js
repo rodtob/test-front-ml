@@ -19,10 +19,12 @@ module.exports ={
                 return {
                         id: element.id,
                         title: element.title,
-                        price:{currency: element.currency_id,
+                        
+                        price:{
+                        currency: element.currency_id,
                         amount: element.price,
                         decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
-                },
+                         },
                         picture: element.thumbnail,
                         condition: element.condition,
                         free_shipping: element.shipping.free_shipping}
@@ -34,8 +36,8 @@ module.exports ={
             name: '',
             lastname: '',
             },
-            categories: [ categorias],
-            items: [items]
+            categories: categorias,
+            items: items
            }
 
             res.send(elFormatoAll)

@@ -1,19 +1,20 @@
-import React from 'react';
+
 import logo from './Assets/Logo_ML.png'
 import lupa from './Assets/ic_Search.png'   
 
 
-const Buscador = ()=>{
+const Buscador = ({keyword,setKeyword})=>{
+
     return(
 
         <section className='wrapper-buscador'>
-            <form className='buscador'>
+            <section className='buscador'>
             <img src={logo} alt='logoMercadoLibre'/>
-            <section className='wrapper--input--buscador'>
-                <input type='text' className='buscador--input' placeholder='Ingresa tu busqueda'/>
+            <form  className='wrapper--input--buscador'>
+                <input type='text' name='query' value={keyword} className='buscador--input'  onSubmit={(e) => setKeyword(e.target.value)} placeholder='Ingresa tu busqueda'/>   
                 <img src={lupa} className='lupa' alt='lupa'/>
-            </section>
             </form>
+            </section>
         </section>
     )
 }
