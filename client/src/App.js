@@ -2,27 +2,14 @@ import React,{useState, useEffect} from 'react'
 import Buscador from './Buscador'
 import Detalle from './Detalle';
 import Resultado from './Resultado';
+import {Switch, Route} from 'react-router-dom'
+import queryString from 'querystring'
 
 const App = ()=> {
 
-  const [data, setData] = useState(null);
 
-  const [id, setId] = useState('MLA709580097')
+  // const [query, setQuery] = useState('pikachu')
 
-  const [query, setQuery] = useState('pikachu')
-
-  useEffect(() => {
-
-      async function apiCall() {
-        let response = await fetch(`/api/items/${id}`)
-        response = await response.json()
-        setData(response)
-        console.log(response)
-      }
-
-     apiCall()    
-
-  }, [id]);
 
 //   useEffect(() => {
 
@@ -38,15 +25,20 @@ const App = ()=> {
 // }, [query]);
 
   return (
-
+  <React.Fragment>
     <div className="App">
       <Buscador/>
       <div className='Content'>
-      {data !=null ? <Detalle data={data} /> : 
-      <p>cargando...</p>}
+   
+        <Switch>
+          <Route exact path='/items/:id' component={Detalle}/>
+          <Route exact path='/items?search=' component={Resultado}/>
+        </Switch>
 
       </div>
     </div>
+
+  </React.Fragment>
   );
 }
 

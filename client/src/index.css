@@ -68,8 +68,9 @@
 }
 
 .producto--pic{
-  width: 100%;
-  align-items: center;
+  object-fit: scale-down;
+  width: 680px;
+  height: 500px;
 }
 
 .wrapper--main{

@@ -1,9 +1,11 @@
+import React from 'react';
 import logo from './Assets/Logo_ML.png'
-import lupa from './Assets/ic_Search.png'
+import lupa from './Assets/ic_Search.png'   
 
 
 const Buscador = ()=>{
     return(
+
         <section className='wrapper-buscador'>
             <form className='buscador'>
             <img src={logo} alt='logoMercadoLibre'/>

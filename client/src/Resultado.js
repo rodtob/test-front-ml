@@ -1,4 +1,4 @@
-import producto from './Assets/producto.png'
+
 import envio from './Assets/ic_shipping.png'
 
 const Resultado = ()=>{
@@ -9,7 +9,7 @@ const Resultado = ()=>{
                 
                 <section className='wrapper--titulo--producto--imagen'>
                     <section className='wrapper--img resultados--img'>
-                        <img className='producto--pic border--detalle' src={producto} alt='producto'/>
+                        <img className='producto--pic border--detalle' src={envio} alt='producto'/>
                     </section>
                     <article className='info--resultado'>
                         <section className='wrapper--resultado--precio'>
@@ -27,7 +27,7 @@ const Resultado = ()=>{
                 </section>
                 <section className='wrapper--titulo--producto--imagen'>
                     <section className='wrapper--img resultados--img'>
-                        <img className='producto--pic border--detalle' src={producto} alt='producto'/>
+                        <img className='producto--pic border--detalle' src={envio} alt='producto'/>
                     </section>
                     <article className='info--resultado'>
                         <section className='wrapper--resultado--precio'>
