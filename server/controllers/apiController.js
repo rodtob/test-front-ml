@@ -6,6 +6,7 @@ module.exports ={
     findAll: async (req,res)=>{
 
         
+        try{
         const responseAll = await apiCalls.callApi('allItems',req.params.query)
 
         let categorias = responseAll.available_filters[0].values.map(element => {             
@@ -39,41 +40,46 @@ module.exports ={
            }
 
             res.send(products)
+        }catch(err){
+                res.json(null)
+            }
     },
     findById: async (req,res)=>{
+     
+        try{
+            const response = await apiCalls.callApi('item',req.params.id)
+
+            const description = await apiCalls.callApi('itemDescription', req.params.id)
+
+            const seller = await apiCalls.callApi('seller',response.seller_id)
+
+            const category = await apiCalls.callApi('categories',response.category_id)
 
 
-        const response = await apiCalls.callApi('item',req.params.id)
-
-        const description = await apiCalls.callApi('itemDescription', req.params.id)
-
-        const seller = await apiCalls.callApi('seller',response.seller_id)
-
-        const category = await apiCalls.callApi('categories',response.category_id)
-
-
-        const product = {
-            author: {
-                name: seller.nickname,
-                lastname: ''
-            },
-            item: {
-                id: response.id,
-                title: response.title,
-                price: {
-                currency: response.currency_id,
-                amount: Math.round(response.price),
-                decimals: parseFloat((response.price - Math.floor(response.price)).toFixed(2)),
+            const product = {
+                author: {
+                    name: seller.nickname,
+                    lastname: ''
                 },
-                picture: response.pictures[0].url,
-                condition: response.condition,
-                free_shipping: response.shipping.free_shipping,
-                sold_quantity: response.sold_quantity,
-                description: description.plain_text,
-                category: category.name 
+                item: {
+                    id: response.id,
+                    title: response.title,
+                    price: {
+                    currency: response.currency_id,
+                    amount: Math.round(response.price),
+                    decimals: parseFloat((response.price - Math.floor(response.price)).toFixed(2)),
+                    },
+                    picture: response.pictures[0].url,
+                    condition: response.condition,
+                    free_shipping: response.shipping.free_shipping,
+                    sold_quantity: response.sold_quantity,
+                    description: description.plain_text,
+                    category: category.name 
+                
+                }}
             
-        }}
-   
-        res.json(product)
-    }
+            res.json(product)} catch(err){
+                res.json(null)
+            }
+        }
 }
