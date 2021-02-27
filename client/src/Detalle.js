@@ -10,7 +10,7 @@ const Detalle = ()=>{
 
   const [data, setData] = useState(null);
 
-  const [idApi, setId] = useState(id)
+  const [idApi] = useState(id)
   
   useEffect(() => {
   
@@ -31,9 +31,9 @@ const Detalle = ()=>{
               <p className='categoria--producto'>{data.item.category}</p>
               <article className='wrapper--main'>
                   <section className='wrapper--titulo--producto--imagen'>
-                      {/* <section className='wrapper--img'> */}
+             
                           <img className='producto--pic' src={data.item.picture} alt='producto'/>
-                      {/* </section> */}
+              
                       <article className='info--producto'>
                           <p className='categoria--nuevo--usado'>{data.item.condition === 'new'? 'Nuevo' : 'Usado'} - {data.item.sold_quantity}- vendidos</p>
                           <h1 className='nombre--producto'>{data.item.title}</h1>
@@ -51,7 +51,7 @@ const Detalle = ()=>{
       )
   } else{
       return(
-          <p>cargando...</p>
+          <p>cargando detalle...</p>
       )
   }
 

@@ -10,24 +10,24 @@ module.exports ={
         const responseAll = await fetch(`${baseurl}/sites/MLA/search?q=${req.params.query}`)
         const resjsonAll = await responseAll.json()
 
-            let categorias = resjsonAll.available_filters[0].values.map(element => {             
+        let categorias = resjsonAll.available_filters[0].values.map(element => {             
               return element.name
             });
 
 
-            let items = resjsonAll.results.map(element => {
-                return {
-                        id: element.id,
-                        title: element.title,
-                        
-                        price:{
-                        currency: element.currency_id,
-                        amount: element.price,
-                        decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
-                         },
-                        picture: element.thumbnail,
-                        condition: element.condition,
-                        free_shipping: element.shipping.free_shipping}
+        let items = resjsonAll.results.map(element => {
+            return {
+                id: element.id,
+                title: element.title,
+                
+                price:{
+                currency: element.currency_id,
+                amount: element.price,
+                decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
+                },
+                picture: element.thumbnail,
+                condition: element.condition,
+                free_shipping: element.shipping.free_shipping}
               });
 
         const elFormatoAll = {
@@ -58,8 +58,9 @@ module.exports ={
 
         const categoria = await fetch(`${baseurl}/categories/${resjson.category_id}`)
 
-        const catergoriajson = await categoria.json()
+        const categoriajson = await categoria.json()
 
+        //refactoriar funciones
 
         const elFormato = {
             author: {
@@ -79,7 +80,7 @@ module.exports ={
                 free_shipping: resjson.shipping.free_shipping,
                 sold_quantity: resjson.sold_quantity,
                 description: resjsonD.plain_text,
-                category: catergoriajson.name 
+                category: categoriajson.name 
             
         }}
    
