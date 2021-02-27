@@ -10,9 +10,9 @@ const Buscador = ()=>{
 
     const aquery = new URLSearchParams(search);
 
-    let elsearch = aquery.get('search')
+    let searchParam = aquery.get('search')
 
-    const [keyword, setKeyword] = useState(elsearch);
+    const [keyword, setKeyword] = useState(searchParam);
 
     return(
 

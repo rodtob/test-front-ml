@@ -1,21 +1,19 @@
 
-const fetch = require("node-fetch");
-
-const baseurl = 'https://api.mercadolibre.com'
+const apiCalls = require('../functions/apiCalls')
 
 module.exports ={
     
     findAll: async (req,res)=>{
-        
-        const responseAll = await fetch(`${baseurl}/sites/MLA/search?q=${req.params.query}`)
-        const resjsonAll = await responseAll.json()
 
-        let categorias = resjsonAll.available_filters[0].values.map(element => {             
+        
+        const responseAll = await apiCalls.callApi('allItems',req.params.query)
+
+        let categorias = responseAll.available_filters[0].values.map(element => {             
               return element.name
             });
 
 
-        let items = resjsonAll.results.map(element => {
+        let items = responseAll.results.map(element => {
             return {
                 id: element.id,
                 title: element.title,
@@ -30,7 +28,7 @@ module.exports ={
                 free_shipping: element.shipping.free_shipping}
               });
 
-        const elFormatoAll = {
+        const products = {
             
             author: {
             name: '',
@@ -40,50 +38,42 @@ module.exports ={
             items: items
            }
 
-            res.send(elFormatoAll)
+            res.send(products)
     },
     findById: async (req,res)=>{
 
-        const response = await fetch(`${baseurl}/items/${req.params.id}`)
 
-        const resjson = await response.json()
+        const response = await apiCalls.callApi('item',req.params.id)
 
-        const descripcion__response = await fetch(`${baseurl}/items/${req.params.id}/description`)
+        const description = await apiCalls.callApi('itemDescription', req.params.id)
 
-        const resjsonD = await descripcion__response.json()
+        const seller = await apiCalls.callApi('seller',response.seller_id)
 
-        const seller = await fetch(`${baseurl}/users/${resjson.seller_id}`)
+        const category = await apiCalls.callApi('categories',response.category_id)
 
-        const sellerjson = await seller.json()
 
-        const categoria = await fetch(`${baseurl}/categories/${resjson.category_id}`)
-
-        const categoriajson = await categoria.json()
-
-        //refactoriar funciones
-
-        const elFormato = {
+        const product = {
             author: {
-                name: sellerjson.nickname,
+                name: seller.nickname,
                 lastname: ''
             },
             item: {
-                id: resjson.id,
-                title: resjson.title,
+                id: response.id,
+                title: response.title,
                 price: {
-                currency: resjson.currency_id,
-                amount: Math.round(resjson.price),
-                decimals: parseFloat((resjson.price - Math.floor(resjson.price)).toFixed(2)),
+                currency: response.currency_id,
+                amount: Math.round(response.price),
+                decimals: parseFloat((response.price - Math.floor(response.price)).toFixed(2)),
                 },
-                picture: resjson.pictures[0].url,
-                condition: resjson.condition,
-                free_shipping: resjson.shipping.free_shipping,
-                sold_quantity: resjson.sold_quantity,
-                description: resjsonD.plain_text,
-                category: categoriajson.name 
+                picture: response.pictures[0].url,
+                condition: response.condition,
+                free_shipping: response.shipping.free_shipping,
+                sold_quantity: response.sold_quantity,
+                description: description.plain_text,
+                category: category.name 
             
         }}
    
-        res.json(elFormato)
+        res.json(product)
     }
 }
