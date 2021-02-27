@@ -1,9 +1,8 @@
 
-import envio from './Assets/ic_shipping.png'
+import Lupa from '../Assets/Lupa'
 import React,{useState, useEffect} from 'react'
-import {useLocation, Link} from 'react-router-dom'
-
-
+import {useLocation} from 'react-router-dom'
+import Producto from '../Components/Producto'
 
 const Resultado = ()=>{
 
@@ -12,79 +11,71 @@ const Resultado = ()=>{
 
     const aquery = new URLSearchParams(search);
   
-    let elsearch = aquery.get('search')
+    let searchParam = aquery.get('search')
 
-    const [query] = useState(elsearch)
+    const [query] = useState(searchParam)
 
     const [products, setProducts] = useState(null);
+
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     
     
     async function apiCall() {
-        let response = await fetch(`/api/itemsq=${query}`)
-        let responseJson = await response.json()
-        setProducts(responseJson)
-    
+     try{
+            setLoading(true)         
+            let response = await fetch(`/api/itemsq=${query}`)
+            let responseJson = await response.json()
+            setProducts(responseJson)
+            setLoading(false)
+            console.log(responseJson)
+     }catch(err){
+         alert(err)
+         setError(true)
+     }
     }
-    
-    useEffect( () => {
-        
+
+    useEffect( () => {    
         apiCall()
-    
     },[]);
 
-if(products){
+    if(error){
+        return(
+            <section className='noProduct'>
+            <Lupa/>
+            <p>Hubo un error</p>
+        </section>
+        )
+    }
+    if(loading){
+        return(
+            <section className='noProduct loading'>
+                <p>Cargando...</p>
+            </section>
+        )
+    }    
 
-    
-    return(
-        
-        <div className='wrapper--categoria--main'>
-            <p className='categoria--producto'>Electrónica audio video</p>
+        if(products){    
+            return(
+                
+                <div className='wrapper--categoria--main'>
+                    <p className='categoria--producto'>{products.categories[0]}</p>
 
-                {products.items.map(element=> {
-                    // componetizar Producto
-                    let freeshipping = element.free_shipping? <img src={envio} alt='icono envío' className='icono--envio'/> : null ;
-                    let currency = element.price.currency === 'ARS'? '$' : 'U$S' 
-                    return(
-
-
-                       
-                        <article className='wrapper--main wresultado' key={element.id}>
-                            
-                            <section className='wrapper--titulo--producto--imagen'>
-                                <section className='wrapper--img resultados--img'>
-                                    <Link to={`/items/${element.id}`}>
-                                    <img className='producto--pic border--detalle' src={element.picture} alt='producto'/>
-                                    </Link>
-                                </section>
-                                <article className='info--resultado'>
-                                    <section className='wrapper--resultado--precio'>
-
-                                        <h3 className='precio p--resultado'>{currency}{'  '}{element.price.amount}</h3>
-                                      
-                                        {freeshipping}
-                                    
-                                    </section>
-                                    <h1 className='titulo--resultado'>{element.title}</h1>
-                            
-                                </article>
-                                <article className='procedencia'>
-                                    <p>Procedencia</p>
-                                </article>
+                        {products.items.map(producto=> {
+                            return(
+                                <Producto producto={producto}/>
+                            )           
+                        })}  
+                </div>)
+                    } else{
+                        return(
+                            <section className='noProduct'>
+                                <Lupa/>
+                                <p>
+                                    Escribí en el buscador lo que querés encontrar.
+                                </p>
                             </section>
-
-                        </article>
-                    )
-                })}
-        
-        </div>)
-            } else{
-                return(
-                    <p>cargando resultados...</p>
-                )
-
-            }
-
-
-            }
+                        )}
+                    }
 
 export default Resultado

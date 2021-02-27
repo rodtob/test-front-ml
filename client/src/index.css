@@ -225,3 +225,28 @@
 .wresultado{
   min-height: 10vh;
 }
+
+.noProduct{
+    display: flex;
+    max-width: 1018px;
+    min-height: 204px;
+    border-radius: 4px;
+    margin: 48px auto;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 42px 40px 32px;
+    background-color: #fff;
+}
+
+.loading{
+  font-size: 20px;
+  width: 700px;
+}
+
+.labelBuscador{
+  cursor: pointer;
+}
