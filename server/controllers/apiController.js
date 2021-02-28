@@ -22,7 +22,7 @@ module.exports ={
                 price:{
                 currency: element.currency_id,
                 amount: element.price,
-                decimals:  parseFloat((element.prices.amount - Math.floor(element.prices.amount)).toFixed(2)),
+                decimals:  parseFloat((element.price - Math.floor(element.price)).toFixed(2)),
                 },
                 picture: element.thumbnail,
                 condition: element.condition,

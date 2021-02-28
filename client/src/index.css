@@ -57,6 +57,7 @@
 
 .wrapper--titulo--producto--imagen{
   display: flex;
+  justify-content: space-around;
   flex-direction: row;
   margin-bottom: 10px;
 }
@@ -216,7 +217,7 @@
   display: flex;
   font-size: 12px;
   padding-top:35px;
-  padding-right: 35px;
+  width: 20%;
 }
 
 .info--resultado{
@@ -267,6 +268,7 @@
 }
 .info--resultado{
     width: 100%;
+    padding-left: 0;
     align-items: center;
 }
 .wrapper--main{
@@ -306,4 +308,9 @@
 .noProduct{
   width: 90%;
 }
+.descripcion--producto{
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
 }
