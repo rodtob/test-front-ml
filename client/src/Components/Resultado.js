@@ -18,44 +18,32 @@ const Resultado = ()=>{
     const [products, setProducts] = useState(null);
 
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
     
     
-    async function apiCall() {
-     try{
-            setLoading(true)         
-            let response = await fetch(`/api/itemsq=${query}`)
-            let responseJson = await response.json()
-            setProducts(responseJson)
-            setLoading(false)
-            console.log(responseJson)
-     }catch(err){
-         alert(err)
-         setError(true)
-     }
-    }
-
+    
     useEffect( () => {    
+        async function apiCall() {
+         try{
+                setLoading(true)         
+                let response = await fetch(`/api/itemsq=${query}`)
+                let responseJson = await response.json()
+                setProducts(responseJson)
+                setLoading(false)
+         }catch(err){
+             alert(err)
+         }
+        }
         apiCall()
-    },[]);
+    },[query]);
 
-    if(error){
-        return(
-            <section className='noProduct'>
-            <Lupa/>
-            <p>Hubo un error</p>
-        </section>
-        )
-    }
+
     if(loading){
         return(
             <section className='noProduct loading'>
                 <p>Cargando...</p>
             </section>
         )
-    }    
-
-        if(products){    
+    }   else if (products){    
             return(
                 
                 <div className='wrapper--categoria--main'>
