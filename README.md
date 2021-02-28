@@ -4,9 +4,9 @@ En este challenge utilicé el siguiente stack de tecnologías:
 
 Node js
 
-Markup : *Express para crear el servidor.
-         *Node-fetch para conectarme con la api.
-         *Cors para permitir la conexión entre servidor y proveniendo del mismo origen.
+*Express para crear el servidor.
+*Node-fetch para conectarme con la api.
+*Cors para permitir la conexión entre servidor y proveniendo del mismo origen.
 
 React js
 
