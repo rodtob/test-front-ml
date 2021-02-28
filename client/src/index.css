@@ -255,3 +255,35 @@
 .labelBuscador{
   cursor: pointer;
 }
+
+@media (max-width: 700px){
+
+.App{
+  min-width: auto;
+  width: 100%;
+}
+.wrapper--categoria--main{
+  width: 90%;
+}
+.info--resultado{
+    width: 100%;
+    align-items: center;
+}
+.wrapper--main{
+  flex-direction: column;
+}
+
+.wrapper--titulo--producto--imagen{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.procedencia{
+  padding-top: 10px;
+  padding-right: 0px;
+}
+
+.titulo--resultado{
+  text-align: center;
+}
+}

@@ -12,7 +12,8 @@ const Buscador = ()=>{
 
     let searchParam = aquery.get('search')
 
-    const [keyword, setKeyword] = useState(searchParam);
+
+    const [keyword, setKeyword] = useState(searchParam == null ? '' : searchParam);
 
     return(
 
@@ -23,7 +24,7 @@ const Buscador = ()=>{
             </Link>
             <form  className='wrapper--input--buscador' action={`/items`}>
                 <input id='buscador' type='search' name='search' value={keyword}  required className='buscador--input' onChange={(e) => setKeyword(e.target.value)}  placeholder='Ingresa tu busqueda'/>   
-                <label className='labelBuscador' for='buscador'>
+                <label className='labelBuscador' htmlFor='buscador'>
                     <img src={lupa} className='lupa' alt='lupa'/>
                 </label>
             </form>

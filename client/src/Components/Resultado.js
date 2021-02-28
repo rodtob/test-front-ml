@@ -51,7 +51,7 @@ const Resultado = ()=>{
 
                         {products.items.map(producto=> {
                             return(
-                                <Producto producto={producto}/>
+                                <Producto producto={producto} key={producto.id}/>
                             )           
                         })}  
                 </div>)
