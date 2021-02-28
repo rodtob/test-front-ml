@@ -26,7 +26,9 @@ module.exports ={
                 },
                 picture: element.thumbnail,
                 condition: element.condition,
-                free_shipping: element.shipping.free_shipping}
+                free_shipping: element.shipping.free_shipping,
+                origin: element.address.city_name
+            }
               });
 
         const products = {

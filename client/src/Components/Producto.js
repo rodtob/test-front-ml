@@ -8,8 +8,6 @@ const Producto=({producto})=>{
     let currency = producto.price.currency === 'ARS'? '$' : 'U$S' 
     return(
 
-
-    
         <article className='wrapper--main wresultado' key={producto.id}>
             
             <section className='wrapper--titulo--producto--imagen'>
@@ -30,7 +28,7 @@ const Producto=({producto})=>{
             
                 </article>
                 <article className='procedencia'>
-                    <p>Procedencia</p>
+                    <p>{producto.origin}</p>
                 </article>
             </section>
 
