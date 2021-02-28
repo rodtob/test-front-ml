@@ -277,6 +277,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .procedencia{
   padding-top: 10px;
@@ -294,7 +295,15 @@
   width: 100%;
 }
 .producto--pic{
-  width: 320px;
+  width: 220px;
   height: auto;
+}
+.resultados--img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.noProduct{
+  width: 90%;
 }
 }
