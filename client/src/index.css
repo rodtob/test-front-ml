@@ -286,4 +286,15 @@
 .titulo--resultado{
   text-align: center;
 }
+
+.buscador--input{
+  margin-left: 10px;
+}
+.Content{
+  width: 100%;
+}
+.producto--pic{
+  width: 320px;
+  height: auto;
+}
 }
