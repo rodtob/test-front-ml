@@ -38,7 +38,12 @@ Para buscar un producto directamente en la API puedes ir a:
 http://localhost:5000/api/items?q=
 
 
-## Creditos
+## Deploy
+
+ https://challenge-meli-rtoblli.herokuapp.com/
+
+
+## Créditos
 
 App creada por Rodrigo Toblli.
 
