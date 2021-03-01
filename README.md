@@ -13,7 +13,7 @@ React js
 Basándome en el entorno que provee create-react-app utilicé:
 
 * React-router-dom para generar las rutas y obtener información de la url con UseParams y Uselocation.
-* Use State y Use Effect para montar y actualizar los estados de los componentes.
+* Use State y Use Effect para montar y actualizar los estados de las props de los componentes.
 
 CSS
 
