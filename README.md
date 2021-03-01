@@ -5,8 +5,8 @@ En este challenge utilicé el siguiente stack de tecnologías:
 Node js
 
 * Express para crear el servidor.
-* Node-fetch para conectarme con la api.
-* Cors para permitir la conexión entre servidor y proveniendo del mismo origen.
+* Node-fetch para consumir datos de la api.
+* Cors para permitir la conexión entre servidor y cliente.
 
 React js
 
@@ -14,6 +14,7 @@ Basándome en el entorno que provee create-react-app utilicé:
 
 * React-router-dom para generar las rutas y obtener información de la url con UseParams y Uselocation.
 * Use State y Use Effect para montar y actualizar los estados de las props de los componentes.
+* Webpack y el build de create-react-app con el objetivo de minificar el código.
 
 CSS
 
