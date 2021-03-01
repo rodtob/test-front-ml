@@ -16,10 +16,6 @@ Basándome en el entorno que provee create-react-app utilicé:
 * Use State y Use Effect para montar y actualizar los estados de las props de los componentes.
 * Webpack y el build de create-react-app con el objetivo de minificar el código.
 
-CSS
-
-* Media queries para lograr un diseño responsive
-
 
 ## Inicializar la app
 
@@ -37,6 +33,9 @@ Para buscar un producto directamente en la API puedes ir a:
 
 http://localhost:5000/api/items?q=
 
+## Mobile-last
+
+A través de css y sus media queries, armé un diseño responsive con prioridad a desktop.
 
 ## Deploy
 
